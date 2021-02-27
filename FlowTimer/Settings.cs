@@ -7,6 +7,7 @@ namespace FlowTimer {
 
     public class Settings {
 
+        public Hotkey Mark  = new Hotkey(Keys.Space, Keys.None, false);
         public Hotkey Start = new Hotkey(Keys.None, Keys.None, false);
         public Hotkey Stop  = new Hotkey(Keys.None, Keys.None, false);
         public Hotkey Undo  = new Hotkey(Keys.None, Keys.None, false);

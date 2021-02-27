@@ -29,6 +29,7 @@ namespace FlowTimer {
         public static List<BaseTimer> TimerTabs;
         public static FixedOffsetTimer FixedOffset;
         public static VariableOffsetTimer VariableOffset;
+        public static ChocoboTimer Chocobo;
         public static BaseTimer CurrentTab {
             get { return TimerTabs[MainForm.TabControl.SelectedIndex]; }
         }
@@ -172,11 +173,12 @@ namespace FlowTimer {
             return CallNextHookEx(KeyboardHook, nCode, wParam, lParam);
         }
 
-        public static void RegisterTabs(TabPage fixedOffset, TabPage variableOffset) {
+        public static void RegisterTabs(TabPage fixedOffset, TabPage variableOffset, TabPage chocobo) {
             Control[] copyControls = { MainForm.ButtonStart, MainForm.ButtonStop, MainForm.ButtonSettings, MainForm.LabelTimer, MainForm.PictureBoxPin };
             FixedOffset = new FixedOffsetTimer(fixedOffset, copyControls);
             VariableOffset = new VariableOffsetTimer(variableOffset, copyControls);
-            TimerTabs = new List<BaseTimer>() { FixedOffset, VariableOffset };
+            Chocobo = new ChocoboTimer(chocobo, copyControls);
+            TimerTabs = new List<BaseTimer>() { FixedOffset, VariableOffset, Chocobo };
         }
 
         public static void TabControl_Selected(object sender, TabControlEventArgs e) {
